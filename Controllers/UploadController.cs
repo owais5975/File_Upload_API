@@ -1,4 +1,4 @@
-﻿using FileUpload_Web_API.Models;
+using FileUpload_Web_API.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +13,11 @@ namespace FileUpload_Web_API.Controllers
 {
     public class UploadController : ApiController
     {
+        class Global
+        {
+            public static bool  Check;
+
+        }
         public Task<HttpResponseMessage> Post()
         {
             HttpResponseMessage response = null;
@@ -39,13 +44,20 @@ namespace FileUpload_Web_API.Controllers
                     {
                         try
                         {
-                            var extension = new List<string>(){".pdf",".jpg",".jpeg",".png",".docx"};
+                            var extensions = new List<string>(){".jpg",".jpeg",".png",".docx", ".pdf" };
                             //Replace / from file name
                             string file_name = dataitem.Headers.ContentDisposition.FileName.Replace("\"", "");
                             //Checking file extension validity
                             var file_extension = Path.GetExtension(file_name);
-                            bool check = (file_extension.ToLower().Contains(".bat")) ? true : false;
-                                if (check)
+                            for (int i = 0; i < extensions.Count(); i++)
+                            {
+                                Global.Check = (file_extension.ToLower() == extensions[i]) ? true : false;
+                                if(Global.Check == true)
+                                {
+                                    break;
+                                }
+                            }
+                                if (!Global.Check)
                                 {
                                      response = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "File Format is InValid");
                                 }
@@ -81,5 +93,6 @@ namespace FileUpload_Web_API.Controllers
                 });
             return task;
         }
+
     }
 }
