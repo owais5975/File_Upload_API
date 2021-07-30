@@ -44,7 +44,7 @@ namespace FileUpload_Web_API.Controllers
                             string file_name = dataitem.Headers.ContentDisposition.FileName.Replace("\"", "");
                             //Checking file extension validity
                             var file_extension = Path.GetExtension(file_name);
-                            bool check = (file_extension.ToLower().Contains(".jpg")) ? true : false;
+                            bool check = (file_extension.ToLower().Contains(".bat")) ? true : false;
                                 if (check)
                                 {
                                      response = Request.CreateErrorResponse(HttpStatusCode.BadRequest, "File Format is InValid");
