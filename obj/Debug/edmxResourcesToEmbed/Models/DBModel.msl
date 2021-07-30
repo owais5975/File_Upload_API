@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UploadFile_DBModelStoreContainer" CdmEntityContainer="DBConnection">
+    <EntitySetMapping Name="Upload_tbl">
+      <EntityTypeMapping TypeName="UploadFile_DBModel.Upload_tbl">
+        <MappingFragment StoreEntitySet="Upload_tbl">
+          <ScalarProperty Name="Image_path" ColumnName="Image_path" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
